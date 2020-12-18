@@ -6,6 +6,9 @@ const app = express();
 // Connect to Database
 connectDB();
 
+// get the body in data
+app.use(express.json({ extended: false }));
+
 app.get("/", (req, res) => res.send("API Running"));
 
 //Mount Routes

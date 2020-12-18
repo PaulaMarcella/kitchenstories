@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const { check, validationResult } = require("express-validator");
 
-// GET api/users
-// Test Route
-// public
-router.get("/", (req, res) => res.send("User Router"));
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
+
+const User = require("../../models/User");
 
 module.exports = router;
