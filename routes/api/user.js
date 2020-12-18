@@ -10,6 +10,22 @@ const auth = require("../../middleware/auth");
 const User = require("../../models/User");
 const Profile = require("../../models/Profile");
 
+// ----Load logged in user from token
+// GET api/user
+// private
+router.get("/", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-passwordHash");
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500, "Server Error");
+  }
+});
+
+// ----Load logged in user from token
+// DELETE api/user/
+// private
 router.delete("/", auth, async (req, res) => {
   try {
     // Delete Profile + User

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Middleware
-const auth = require("../../middleware/auth");
+// const auth = require("../../middleware/auth");
 
 // Packages
 const { check, validationResult } = require("express-validator");
@@ -133,18 +133,5 @@ router.post(
     }
   }
 );
-
-// ----Load logged in user from token
-// GET api/auth
-// private
-router.get("/", auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select("-passwordHash");
-    res.json(user);
-  } catch (err) {
-    console.error(err);
-    res.status(500, "Server Error");
-  }
-});
 
 module.exports = router;

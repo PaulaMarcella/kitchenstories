@@ -12,20 +12,26 @@ const RecipeSchema = new mongoose.Schema(
       required: true,
       default: "No instructions added yet"
     },
-    likes: [
+    readyInMinutes: { type: Number, default: 20 },
+    servings: { type: Number },
+    vegetarian: { type: Boolean },
+    vegan: { type: Boolean },
+    glutenfree: { type: Boolean },
+    image: { type: String },
+    images: {
+      type: [{ type: String }],
+      default: [
+        "https://tso.tastefullysimple.com/_/media/images/recipe-default-image.png"
+      ]
+    },
+    aggregateLikes: [
       {
         user: {
           type: ObjectId,
           ref: "user"
         }
       }
-    ],
-    images: {
-      type: [{ type: String }],
-      default: [
-        "https://tso.tastefullysimple.com/_/media/images/recipe-default-image.png"
-      ]
-    }
+    ]
   },
   { timestamps: true }
 );
