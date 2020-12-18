@@ -47,12 +47,13 @@ router.get("/all", async (req, res) => {
 
 // ----Get some useres profile by Id
 // GET api/profile/:userId
-router.get("/:userId", async (req, res) => {
+router.get("/user/:userId", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.userId
     }).populate("user", ["username", "image"]);
-    if (!profile) return res.status(400).json({ msg: "Profile not found" });
+    if (!profile)
+      return res.status(400).json({ msg: "Profile for user not found" });
     res.json(profile);
   } catch (err) {
     console.error(err.message);
