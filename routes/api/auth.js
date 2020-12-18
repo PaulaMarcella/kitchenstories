@@ -134,7 +134,7 @@ router.post(
   }
 );
 
-// ----Get logged in user from token
+// ----Load logged in user from token
 // GET api/auth
 // private
 router.get("/", auth, async (req, res) => {
