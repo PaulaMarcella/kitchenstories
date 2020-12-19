@@ -4,8 +4,6 @@ const router = express.Router();
 // Middleware
 const auth = require("../../middleware/auth");
 
-// ------------Routes ------------
-
 // Models
 const User = require("../../models/User");
 const Like = require("../../models/Like");
@@ -21,7 +19,6 @@ router.post("/:recipeId", auth, async (req, res) => {
 
     // Check if the like already exists
     const oldLike = await Like.findOne({ recipeId, userId });
-    console.log("OLD LIKE: ", oldLike);
     if (oldLike) {
       return res.status(400).json({ msg: "Recipe already liked" });
     }
@@ -51,7 +48,6 @@ router.delete("/:recipeId", auth, async (req, res) => {
 
     // Delete Like and check if it exists
     const deletedLike = await Like.findOneAndDelete({ recipeId, userId });
-    console.log(deletedLike);
     if (!deletedLike) {
       return res.status(400).json({ msg: "Recipe Not Liked yet" });
     }
@@ -59,7 +55,7 @@ router.delete("/:recipeId", auth, async (req, res) => {
     // remove RecipeId from User
     const user = await User.findById(userId);
     const removeIndex = user.likedRecipes
-      .map((recipe) => recipe.recipeId.toString())
+      .map((recipe) => recipe.recipeId)
       .indexOf(recipeId);
     user.likedRecipes.splice(removeIndex, 1);
     await user.save();

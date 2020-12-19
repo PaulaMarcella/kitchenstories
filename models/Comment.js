@@ -18,4 +18,4 @@ const CommentSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-module.exports = Comment = mongoose.model("recipe", RecipeSchema);
+module.exports = Comment = mongoose.model("comment", CommentSchema);

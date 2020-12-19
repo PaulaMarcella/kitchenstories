@@ -21,6 +21,6 @@ const UserSchema = new mongoose.Schema({
       "https://digimedia.web.ua.pt/wp-content/uploads/2017/05/default-user-image.png"
   },
   likedRecipes: [{ recipeId: { type: ObjectId, ref: "recipe" } }],
-  savedRecipes: [{ recipeId: { type: ObjectId, ref: "recipe" } }]
+  savedRecipes: [{ recipeId: { type: ObjectId, ref: "save" } }]
 });
 module.exports = User = mongoose.model("user", UserSchema);
