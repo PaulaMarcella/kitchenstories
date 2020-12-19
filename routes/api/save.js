@@ -34,6 +34,7 @@ router.post("/:recipeId", auth, async (req, res) => {
     res.json({ msg: "Recipe saved successfully" });
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -61,6 +62,7 @@ router.delete("/:recipeId", auth, async (req, res) => {
     res.json({ msg: "Recipe removed from Saved List" });
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 

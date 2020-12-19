@@ -7,7 +7,7 @@ const CommentSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    userId: {
+    creator: {
       type: ObjectId,
       ref: "user"
     },

@@ -36,6 +36,7 @@ router.post("/:recipeId", auth, async (req, res) => {
     res.json(totalLikes);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -65,6 +66,7 @@ router.delete("/:recipeId", auth, async (req, res) => {
     res.json(totalLikes);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
