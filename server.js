@@ -16,7 +16,8 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/spoonapi", require("./routes/api/spoonapi"));
-app.use("/api/recipes", require("./routes/api/recipes"));
+app.use("/api/recipe", require("./routes/api/recipe"));
+app.use("/api/like", require("./routes/api/like"));
 
 const PORT = process.env.PORT || 5000;
 

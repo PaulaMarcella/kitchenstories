@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-// Middleware
-// const auth = require("../../middleware/auth");
-
 // Packages
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");

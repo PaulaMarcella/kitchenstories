@@ -6,7 +6,6 @@ const auth = require("../../middleware/auth");
 
 // Packages
 const { check, validationResult } = require("express-validator");
-const config = require("config");
 
 // ------------Routes ------------
 
@@ -47,7 +46,7 @@ router.post(
   }
 );
 
-// ----Get All Recipe
+// ----Get All Recipes
 // GET api/recipes
 router.get("/", async (req, res) => {
   try {
