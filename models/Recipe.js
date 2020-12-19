@@ -23,15 +23,7 @@ const RecipeSchema = new mongoose.Schema(
       default: [
         "https://tso.tastefullysimple.com/_/media/images/recipe-default-image.png"
       ]
-    },
-    aggregateLikes: [
-      {
-        user: {
-          type: ObjectId,
-          ref: "user"
-        }
-      }
-    ]
+    }
   },
   { timestamps: true }
 );

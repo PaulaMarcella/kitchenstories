@@ -10,8 +10,22 @@ const Like = require("../../models/Like");
 
 // ------------Routes ------------
 
+// --- Get all Likes by recipe
+// GET api/like/:recipeId
+router.get("/:recipeId", async (req, res) => {
+  try {
+    const likes = await Like.find({ recipeId: req.params.recipeId });
+    // no likes means empty array
+    res.json(likes);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
 // ---- Like a recipe
 // PUT api/like/:recipeId
+// private
 router.post("/:recipeId", auth, async (req, res) => {
   try {
     const recipeId = req.params.recipeId;
@@ -42,6 +56,7 @@ router.post("/:recipeId", auth, async (req, res) => {
 
 // ---- Unlike a recipe
 // DELETE api/like/:recipeId
+// private
 router.delete("/:recipeId", auth, async (req, res) => {
   try {
     const recipeId = req.params.recipeId;

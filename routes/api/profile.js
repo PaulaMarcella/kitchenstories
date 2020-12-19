@@ -19,7 +19,9 @@ router.get("/", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id
-    }).populate("user", ["username", "image"]);
+    })
+      .populate("user", ["username", "image"])
+      .populate("savedRecipes");
     if (!profile) return res.status(400).json({ msg: "Profile not found" });
     res.json(profile);
   } catch (err) {

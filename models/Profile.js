@@ -11,24 +11,7 @@ const ProfileSchema = new mongoose.Schema({
     required: true,
     default: "No bio added yet..."
   },
-  saved: {
-    type: [
-      {
-        type: ObjectId,
-        ref: "recipe"
-      }
-    ],
-    default: []
-  },
-  liked: {
-    type: [
-      {
-        type: ObjectId,
-        ref: "recipe"
-      }
-    ],
-    default: []
-  },
+  savedRecipes: [{ recipeId: { type: ObjectId, ref: "save" } }],
   created: {
     type: [
       {

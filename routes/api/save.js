@@ -5,7 +5,7 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 
 // Models
-const User = require("../../models/User");
+const Profile = require("../../models/Profile");
 const Save = require("../../models/Save");
 
 // ------------Routes ------------
@@ -27,10 +27,9 @@ router.post("/:recipeId", auth, async (req, res) => {
     await newSave.save();
 
     // save recipe to User
-    const user = await User.findById(userId);
-    user.savedRecipes.unshift({ recipeId });
-    await user.save();
-
+    const profile = await Profile.findOne({ user: userId });
+    profile.savedRecipes.unshift({ recipeId });
+    await profile.save();
     res.json({ msg: "Recipe saved successfully" });
   } catch (err) {
     console.error(err.message);
@@ -53,12 +52,12 @@ router.delete("/:recipeId", auth, async (req, res) => {
     }
 
     // remove RecipeId from User
-    const user = await User.findById(userId);
-    const removeIndex = user.savedRecipes
+    const profile = await Profile.findById(userId);
+    const removeIndex = profile.savedRecipes
       .map((recipe) => recipe.recipeId)
       .indexOf(recipeId);
-    user.savedRecipes.splice(removeIndex, 1);
-    await user.save();
+    profile.savedRecipes.splice(removeIndex, 1);
+    await profile.save();
     res.json({ msg: "Recipe removed from Saved List" });
   } catch (err) {
     console.error(err.message);
