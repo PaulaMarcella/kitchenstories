@@ -1,0 +1,107 @@
+// Variables
+@import "variables.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: 1rem;
+  background: $background-color;
+  color: $text-color;
+}
+
+// Core Styles
+a {
+  text-decoration: none;
+  color: $text-color;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Martel", serif;
+}
+
+// Text Styles
+.x-large {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.large {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.lead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.white-text {
+  color: $white-color;
+}
+
+.btn {
+  display: inline-block;
+  background-color: $darkyellow-color;
+  color: $white-color;
+  padding: 0.4rem 1.3rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  outline: none;
+  transition: all 0.3s ease-in;
+  &:hover {
+    background-color: $yellow-color;
+  }
+
+  &.btn-success {
+    background: $success-color;
+    &:hover {
+      background: lighten($success-color, 5%);
+    }
+  }
+  &.btn-danger {
+    background: $danger-color;
+    &:hover {
+      background: lighten($danger-color, 5%);
+    }
+  }
+}
+
+//Margin & Paddinng
+$spaceamounts: (1, 2, 3, 4, 5);
+@each $space in $spaceamounts {
+  // All around margin
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+  // All Vertical margin
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+  // All around padding
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+  // All Vertical padding
+  .py-#{$space} {
+    padding: #{$space}rem 0;
+  }
+}
