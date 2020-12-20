@@ -2,7 +2,8 @@
 
 .header {
   position: relative;
-  background: url("../assets/kitchen-background.jpg") no-repeat center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../assets/kitchen-background.jpg") no-repeat center/cover;
   height: 100vh;
 
   &-inner {
@@ -23,10 +24,57 @@
   color: $yellow-color;
 }
 
-.recipes-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 20px 20px;
-  grid-template-areas: "recipe" "recipe" "recipe";
+.recipes {
+  padding-top: 2rem;
+  &-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px 20px;
+    grid-template-areas: "recipe" "recipe" "recipe";
+    .recipe {
+      border-radius: 8px;
+      height: 20rem;
+      width: 15rem;
+      overflow: hidden;
+      .img {
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        height: 100%;
+        background: {
+          filter: brightness(60%);
+        }
+        background-position: center;
+      }
+      .body {
+        padding: 1rem;
+        color: $white-color;
+      }
+    }
+  }
+}
+
+.search {
+  text-align: center;
+
+  input[type="search"] {
+    outline: 0px;
+    width: 60%;
+    height: 2rem;
+    padding: 0 1.5rem;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid white;
+    appearance: none; //for iOS input[type="search"] roundedness issue. border-radius alone doesn't work
+  }
+
+  button {
+    height: 2rem;
+    padding: 0 1.5rem;
+    background: $yellow-color;
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    border: 1px solid white;
+  }
 }

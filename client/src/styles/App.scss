@@ -24,9 +24,9 @@ ul {
   list-style: none;
 }
 
-img {
-  width: 100%;
-}
+// img {
+//   width: 100%;
+// }
 
 h1,
 h2,
@@ -35,6 +35,21 @@ h4,
 h5,
 h6 {
   font-family: "Martel", serif;
+}
+
+// layout
+.container {
+  max-width: $max-width;
+  margin: auto;
+  overflow: hidden;
+  padding: 0rem 4rem;
+  margin: 6rem 0;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 // Text Styles
@@ -56,6 +71,25 @@ h6 {
   color: $white-color;
 }
 
+// Backgrounds
+.bg {
+  &-white {
+    background: $white-color;
+  }
+  &-yellow {
+    background: $yellow-color;
+  }
+  &-darkyellow {
+    background: $darkyellow-color;
+    color: $text-color;
+  }
+  &-dark {
+    background: $text-color;
+    color: $white-color;
+  }
+}
+
+// Buttons
 .btn {
   display: inline-block;
   background-color: $darkyellow-color;
@@ -70,7 +104,6 @@ h6 {
   &:hover {
     background-color: $yellow-color;
   }
-
   &.btn-success {
     background: $success-color;
     &:hover {

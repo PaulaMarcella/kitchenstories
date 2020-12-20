@@ -1,5 +1,4 @@
 import "../styles/Home.scss";
-
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
@@ -23,34 +22,40 @@ function Home() {
           <div className="buttons"></div>
         </div>
       </div>
-      <div className="recipes-container">
-        <div className="recipe">
-          RECIPE
-          <h6 className="title">Potato Mash</h6>
-          <a href="/">More Details</a>
+
+      <section>
+        <div className="container search">
+          <h2 className="my-1">Find Recipes and More</h2>
+          <form>
+            <input type="search" placeholder="Search a Recipe..." />
+            <button className="btn" type="submit">
+              O
+            </button>
+          </form>
         </div>
-        <div className="recipe">
-          RECIPE
-          <h6 className="title">Potato Mash</h6>
-          <a href="/">More Details</a>
+      </section>
+
+      <section className="bg-white">
+        <div className="container recipes">
+          <h2 className="py-1">Today's Recipes</h2>
+          <div className="recipes-inner">
+            <div className="recipe">
+              <div
+                className="img"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://tso.tastefullysimple.com/_/media/images/recipe-default-image.png")`
+                }}
+              >
+                <div className="body">
+                  <p>Title</p>
+                  <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="recipe">
-          RECIPE
-          <h6 className="title">Potato Mash</h6>
-          <a href="/">More Details</a>
-        </div>
-        <div className="recipe">
-          RECIPE
-          <h6 className="title">Potato Mash</h6>
-          <a href="/">More Details</a>
-        </div>
-        <div className="recipe">
-          RECIPE
-          <h6 className="title">Potato Mash</h6>
-          <a href="/">More Details</a>
-        </div>
-      </div>
-      <div />
+        <div />
+      </section>
     </Fragment>
   );
 }
