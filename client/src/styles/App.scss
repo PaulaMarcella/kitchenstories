@@ -40,10 +40,9 @@ h6 {
 // layout
 .container {
   max-width: $max-width;
-  margin: auto;
   overflow: hidden;
   padding: 0rem 4rem;
-  margin: 6rem 0;
+  margin: 6rem auto;
 }
 
 .overlay {
@@ -59,7 +58,7 @@ h6 {
   margin-bottom: 1rem;
 }
 .large {
-  font-size: 3rem;
+  font-size: 2rem;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
@@ -91,6 +90,8 @@ h6 {
 
 // Buttons
 .btn {
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: 1rem;
   display: inline-block;
   background-color: $darkyellow-color;
   color: $white-color;
@@ -137,4 +138,31 @@ $spaceamounts: (1, 2, 3, 4, 5);
   .py-#{$space} {
     padding: #{$space}rem 0;
   }
+}
+
+// Alert
+.alert {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 40%;
+  padding: 1rem;
+  opacity: 0.9;
+  background: $yellow-color;
+  color: $text-color;
+  z-index: 200;
+}
+
+.alert-danger {
+  background: $danger-color;
+  color: #fff;
+}
+
+.alert-success {
+  background: $success-color;
+  color: #fff;
 }
