@@ -18,7 +18,6 @@ function Home() {
           <Link to="/login">
             <p className="white-text my-1">Or Login to your Account Login</p>
           </Link>
-
           <div className="buttons"></div>
         </div>
       </div>
@@ -28,8 +27,8 @@ function Home() {
           <h2 className="my-1">Find Recipes and More</h2>
           <form>
             <input type="search" placeholder="Search a Recipe..." />
-            <button className="btn" type="submit">
-              O
+            <button type="submit">
+              <i className="fas fa-search"></i>
             </button>
           </form>
         </div>

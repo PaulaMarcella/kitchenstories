@@ -1,13 +1,15 @@
 import "../styles/forms.scss";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-function Login() {
+import { login } from "../actions/auth";
+
+function Login({ login }) {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
-    password: "",
-    password2: ""
+    password: ""
   });
 
   const { email, password } = formData;
@@ -17,6 +19,7 @@ function Login() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    login({ email, password });
   };
 
   return (
@@ -55,6 +58,8 @@ function Login() {
   );
 }
 
-Login.propTypes = {};
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+};
 
-export default Login;
+export default connect(null, { login })(Login);
