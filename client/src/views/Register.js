@@ -2,13 +2,13 @@ import "../styles/forms.scss";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { setAlert } from "../actions/alert";
 import { register } from "../actions/auth";
 
-function Register({ setAlert, register }) {
+function Register({ setAlert, register, isAuthenticated }) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -29,6 +29,10 @@ function Register({ setAlert, register }) {
       register({ username, email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
   return (
     <section className="container">
       <h1 className="large">Sign Up</h1>
@@ -92,4 +96,8 @@ Register.propTypes = {
   register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert, register })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
