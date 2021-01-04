@@ -21,7 +21,7 @@ function Home({ auth: { isAuthenticated, loading, user } }) {
   );
   const authHeader = (
     <Fragment>
-      <p className="lead">Welcome to your Kitchenstory, {user.username}! </p>
+      <p className="lead">Welcome to your Kitchenstory! </p>
       <p className="lead">Discover Share and Search New Recipes</p>
       <i className="fas fa-angle-down"></i>
     </Fragment>
@@ -41,7 +41,9 @@ function Home({ auth: { isAuthenticated, loading, user } }) {
 
       <Search />
 
-      <RecipeList />
+      <section className="bg-white">
+        <RecipeList />
+      </section>
     </Fragment>
   );
 }

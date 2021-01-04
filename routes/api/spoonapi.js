@@ -7,7 +7,7 @@ const config = require("config");
 
 // ------------Routes ------------
 
-//  GET api/recipes/spoonapi/all
+//  GET api/spoonapi/all
 //  Get radom recipes from api
 router.get("/all", (req, res) => {
   try {
@@ -24,9 +24,9 @@ router.get("/all", (req, res) => {
     request(options, (error, response, body) => {
       if (error) console.error(error);
 
-      if (response.statusCode !== 200) {
-        res.status(404).json({ msg: "No Recipes found" });
-      }
+      // if (response.statusCode !== 200) {
+      //   res.status(404).json({ msg: "No Recipes found" });
+      // }
       res.json(JSON.parse(body));
     });
   } catch (err) {
