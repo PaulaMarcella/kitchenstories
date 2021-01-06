@@ -3,45 +3,57 @@ import "../../styles/Recipes.scss";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-// import Spinner from "../../layout/Spinner";
+import Spinner from "../../layout/Spinner";
 
 import { getRecipes } from "../../actions/recipes";
 
-function RecipeList({ getRecipes, recipes: { recipes, loading } }) {
-  // useEffect(() => {
-  //   //getRecipes();
-  // }, []);
+function RecipeList({ getRecipes, recipesState: { recipes, loading } }) {
+  useEffect(() => {
+    getRecipes();
+  }, []);
 
   return (
     <div className="container recipes">
       <h2 className="py-1">Today's Recipes</h2>
-
-      <Fragment>
-        <div className="recipes-inner">
-          <div className="recipe">
-            <div
-              className="img"
-              style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("https://tso.tastefullysimple.com/_/media/images/recipe-default-image.png")`
-              }}
-            >
-              <div className="body">
-                <p>Title</p>
-                <p>Lorem ipsum dolor sit amet.</p>
+      {console.log(recipes)}
+      {!loading && recipes.length > 0 ? (
+        <Fragment>
+          {recipes.map((recipe) => (
+            <div key={recipe.id} className="recipes-inner">
+              {console.log("Hello")}
+              <div className="recipe">
+                <div
+                  className="img"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${recipe.image})`
+                  }}
+                >
+                  <div className="body">
+                    <p>{recipe.title}</p>
+                    <div>
+                      <span>{recipe.aggregateLikes}</span>{" "}
+                      <i className="far fa-heart"></i>
+                      {recipe.vegetarian && <i className="fas fa-leaf"></i>}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </Fragment>
+          ))}
+        </Fragment>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }
 RecipeList.propTypes = {
-  getRecipes: PropTypes.func.isRequired
+  getRecipes: PropTypes.func.isRequired,
+  recipesState: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-  recipes: state.recipes
+  recipesState: state.recipes
 });
 
 export default connect(mapStateToProps, { getRecipes })(RecipeList);

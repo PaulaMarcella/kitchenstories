@@ -7,7 +7,7 @@ export const getRecipes = () => async (dispatch) => {
     const res = await axios.get("/api/spoonapi/all");
     dispatch({
       type: GET_RECIPES,
-      payload: res.data
+      payload: res.data.recipes
     });
   } catch (err) {
     console.error(err);

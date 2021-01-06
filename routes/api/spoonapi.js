@@ -11,7 +11,7 @@ const config = require("config");
 //  Get radom recipes from api
 router.get("/all", (req, res) => {
   try {
-    const limit = req.query.limit ? req.query.limit : 2;
+    const limit = req.query.limit ? req.query.limit : 1;
     const options = {
       uri: `https://api.spoonacular.com/recipes/random?apiKey=${config.get(
         "spoonacularApiKey"
