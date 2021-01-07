@@ -1,62 +1,53 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
 //Packages
-const request = require("request");
 const config = require("config");
 
 // ------------Routes ------------
 
 //  GET api/spoonapi/all
 //  Get radom recipes from api
-router.get("/all", (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     const limit = req.query.limit ? req.query.limit : 1;
-    const options = {
-      uri: `https://api.spoonacular.com/recipes/random?apiKey=${config.get(
+    const uri = encodeURI(
+      `https://api.spoonacular.com/recipes/random?apiKey=${config.get(
         "spoonacularApiKey"
-      )}&number=${limit}`,
-      method: "get",
-      headers: {
-        "Content-Type": "application/json"
-      }
+      )}&number=${limit}`
+    );
+    const headers = {
+      "Content-Type": "application/json",
+      "user-agent": "node.js",
+      "Access-Control-Allow-Origin": "*"
     };
-    request(options, (error, response, body) => {
-      if (error) console.error(error);
-
-      // if (response.statusCode !== 200) {
-      //   res.status(404).json({ msg: "No Recipes found" });
-      // }
-      res.json(JSON.parse(body));
-    });
+    const response = await axios.get(uri, { headers });
+    return res.json(response.data);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    return res.status(404).json({ msg: "No Recipes found" });
   }
 });
 
 //  GET api/recipes/spoonapi/search
 //  search by ingredient
-router.get("/search", (req, res) => {
-  let ingredients = req.query.ingredients;
+router.get("/search", async (req, res) => {
   try {
-    const options = {
-      uri: `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${config.get(
+    const ingredients = req.query.ingredients;
+    const limit = req.query.limit ? req.query.limit : 1;
+    const uri = encodeURI(
+      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${config.get(
         "spoonacularApiKey"
-      )}&ingredients=${ingredients}`,
-      method: "get",
-      headers: {
-        "Content-Type": "application/json"
-      }
+      )}&ingredients=${ingredients}&number=${limit}`
+    );
+    const headers = {
+      "Content-Type": "application/json",
+      "user-agent": "node.js",
+      "Access-Control-Allow-Origin": "*"
     };
-    request(options, (error, response, body) => {
-      if (error) console.error(error);
-
-      if (response.statusCode !== 200) {
-        res.status(404).json({ msg: "No Recipes found" });
-      }
-      res.json(JSON.parse(body));
-    });
+    const response = await axios.get(uri, { headers });
+    return res.json(response.data);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -65,25 +56,20 @@ router.get("/search", (req, res) => {
 
 //  GET api/recipes/spoonapi/similar/:recipeId
 //  suggest similar recipes
-router.get("/similar/:recipeId", (req, res) => {
+router.get("/similar/:recipeId", async (req, res) => {
   try {
-    const options = {
-      uri: `https://api.spoonacular.com/recipes/${
+    const uri = encodeURI(
+      `https://api.spoonacular.com/recipes/${
         req.params.recipeId
-      }/similar?apiKey=${config.get("spoonacularApiKey")}`,
-      method: "get",
-      headers: {
-        "Content-Type": "application/json"
-      }
+      }/similar?apiKey=${config.get("spoonacularApiKey")}`
+    );
+    const headers = {
+      "Content-Type": "application/json",
+      "user-agent": "node.js",
+      "Access-Control-Allow-Origin": "*"
     };
-    request(options, (error, response, body) => {
-      if (error) console.error(error);
-
-      if (response.statusCode !== 200) {
-        res.status(404).json({ msg: "No Recipes found" });
-      }
-      res.json(JSON.parse(body));
-    });
+    const response = await axios.get(uri, { headers });
+    return res.json(response.data);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -92,25 +78,20 @@ router.get("/similar/:recipeId", (req, res) => {
 
 //  GET api/spoonapi/:recipeId
 //  get one by id
-router.get("/:recipeId", (req, res) => {
+router.get("/:recipeId", async (req, res) => {
   try {
-    const options = {
-      uri: `https://api.spoonacular.com/recipes/${
+    const uri = encodeURI(
+      `https://api.spoonacular.com/recipes/${
         req.params.recipeId
-      }/information?apiKey=${config.get("spoonacularApiKey")}`,
-      method: "get",
-      headers: {
-        "Content-Type": "application/json"
-      }
+      }/information?apiKey=${config.get("spoonacularApiKey")}`
+    );
+    const headers = {
+      "Content-Type": "application/json",
+      "user-agent": "node.js",
+      "Access-Control-Allow-Origin": "*"
     };
-    request(options, (error, response, body) => {
-      if (error) console.error(error);
-
-      if (response.statusCode !== 200) {
-        res.status(404).json({ msg: "Recipe not found" });
-      }
-      res.json(JSON.parse(body));
-    });
+    const response = await axios.get(uri, { headers });
+    return res.json(response.data);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

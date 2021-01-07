@@ -1,14 +1,10 @@
 const express = require("express");
-const cors = require("cors");
 const connectDB = require("./config/db");
 
 const app = express();
 
 // Connect to Database
 connectDB();
-
-//Allow cross origin resourse sharing
-app.use(cors());
 
 // get the body in data
 app.use(express.json({ extended: false }));
