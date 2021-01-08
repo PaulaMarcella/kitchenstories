@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Search from "../components/Search";
+import SearchBar from "../components/SearchBar";
 import RecipeList from "../components/recipes/RecipeList";
 
 function Home({ auth: { isAuthenticated, loading, user } }) {
@@ -39,10 +39,10 @@ function Home({ auth: { isAuthenticated, loading, user } }) {
         </div>
       </div>
 
-      <Search />
+      <SearchBar />
 
       <section className="bg-white">
-        <RecipeList />
+        <RecipeList title={"Toda's Recipes"} />
       </section>
     </Fragment>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Search.scss";
 
-function Search() {
+function SearchBar() {
   return (
     <div className="container search">
       <h2 className="my-1">Find Recipes and More</h2>
@@ -14,4 +14,4 @@ function Search() {
     </div>
   );
 }
-export default Search;
+export default SearchBar;
