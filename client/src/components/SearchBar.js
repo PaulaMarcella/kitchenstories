@@ -4,11 +4,9 @@ import "../styles/Search.scss";
 import { connect } from "react-redux";
 import { searchRecipes } from "../actions/recipes";
 
-function SearchBar({
-  searchRecipes,
-  filterState: { vegetarian, vegan, glutenfree, dairyfree }
-}) {
-  const [query, setQuery] = useState("");
+function SearchBar({ searchRecipes, filterState }) {
+  const { vegetarian, vegan, glutenfree, dairyfree } = filterState;
+  const [query, setQuery] = useState(" ");
   const onSubmit = (event) => {
     const queryParams = {
       vegetarian,

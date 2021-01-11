@@ -11,13 +11,12 @@ function Search() {
     glutenfree: false,
     dairyfree: false
   });
-
   return (
     <Fragment>
       <SearchBar filterState={filterState} />
       <section className="bg-white">
         <Filter filterState={filterState} setFilterState={setFilterState} />
-        <RecipeList title={`Your Search Results `} />
+        <RecipeList title={"Your Search Results for ..."} />
       </section>
     </Fragment>
   );
