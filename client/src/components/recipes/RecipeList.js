@@ -11,6 +11,7 @@ import { getRecipes } from "../../actions/recipes";
 function RecipeList({ getRecipes, recipes: { recipes, loading }, title }) {
   useEffect(() => {
     getRecipes();
+    // eslint-disable-next-line
   }, []);
 
   return (

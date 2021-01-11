@@ -29,7 +29,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/recipes">Recipes</Link>
+        <Link to="/search">Search</Link>
       </li>
       <li>
         <Link to="/register">Sign Up</Link>

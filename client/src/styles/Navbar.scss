@@ -12,16 +12,13 @@
   border-bottom: solid 1px $gray-color;
   opacity: 0.9;
   background-color: $white-color;
-
   ul {
     display: flex;
     align-items: center;
-
     a {
       color: $text-color;
       padding: 0.5rem;
       margin: 0 0.25rem;
-
       &:hover {
         border-bottom: 3px solid $yellow-color;
       }

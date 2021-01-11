@@ -32,15 +32,26 @@ router.get("/all", async (req, res) => {
 
 //  GET api/recipes/spoonapi/search
 //  search by ingredient
-router.get("/search", async (req, res) => {
+router.get("/search/:query", async (req, res) => {
   try {
-    const ingredients = req.query.ingredients;
+    let parameters = "";
+    // check diet
+    if (req.query.vegan === "true") parameters += "&diet=vegan";
+    else if (req.query.vegetarian === "true") parameters += "&diet=vegetarian";
+    //check intolerances
+    if (req.query.glutenfree === "true" && req.query.dairyfree === "true")
+      parameters += "&intolerance=gluten-free,dairy-free";
+    else if (req.query.glutenfree === "true")
+      parameters += "&intolerance=gluten";
+    else if (req.query.dairyfree === "true") parameters += "&intolerance=dairy";
+    const query = req.params.query;
     const limit = req.query.limit ? req.query.limit : 1;
     const uri = encodeURI(
-      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${config.get(
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${config.get(
         "spoonacularApiKey"
-      )}&ingredients=${ingredients}&number=${limit}`
+      )}&query=${query}&number=${limit}` + parameters
     );
+    console.log(uri);
     const headers = {
       "Content-Type": "application/json",
       "user-agent": "node.js",

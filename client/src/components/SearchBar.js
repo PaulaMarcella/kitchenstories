@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Search.scss";
 
-function SearchBar() {
+import { connect } from "react-redux";
+import { searchRecipes } from "../actions/recipes";
+
+function SearchBar({
+  searchRecipes,
+  filterState: { vegetarian, vegan, glutenfree, dairyfree }
+}) {
+  const [query, setQuery] = useState("");
+  const onSubmit = (event) => {
+    const queryParams = {
+      vegetarian,
+      vegan,
+      glutenfree,
+      dairyfree
+    };
+    event.preventDefault();
+    searchRecipes(query, queryParams);
+  };
+
   return (
     <div className="container search">
       <h2 className="my-1">Find Recipes and More</h2>
-      <form>
-        <input type="search" placeholder="Search a Recipe..." />
-        <button type="submit">
+      <form onSubmit={(event) => onSubmit(event)}>
+        <input
+          onChange={(event) => setQuery(event.target.value)}
+          name="query"
+          type="search"
+          placeholder="Search a Ingredient... (seperated by Comma)"
+          value={query}
+        />
+        <button type="submit" value="submit">
           <i className="fas fa-search"></i>
         </button>
       </form>
     </div>
   );
 }
-export default SearchBar;
+export default connect(null, { searchRecipes })(SearchBar);

@@ -42,7 +42,7 @@ function Home({ auth: { isAuthenticated, loading, user } }) {
       <SearchBar />
 
       <section className="bg-white">
-        <RecipeList title={"Toda's Recipes"} />
+        <RecipeList title={"Today's Recipes"} />
       </section>
     </Fragment>
   );

@@ -1,4 +1,4 @@
-import { GET_RECIPES, RECIPE_ERROR } from "../actions/types";
+import { GET_RECIPES, RECIPE_ERROR, SEARCH_RECIPES } from "../actions/types";
 
 const initialState = {
   recipes: [],
@@ -10,6 +10,7 @@ const initialState = {
 export default function auth(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case SEARCH_RECIPES:
     case GET_RECIPES:
       return {
         ...state,

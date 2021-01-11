@@ -1,0 +1,23 @@
+@import "./variables";
+
+.filter {
+  background: $background-color;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 3rem;
+  // margin: 0;
+  box-shadow: 0 2px 4px 0 $gray-color;
+  .form-group {
+    align-items: center;
+    display: flex;
+    margin: 0.5rem;
+    select {
+      padding: 0 0.3rem;
+      border: 1px solid $gray-color;
+      border-radius: 0px;
+    }
+    input {
+      margin-left: 0.5rem;
+    }
+  }
+}
