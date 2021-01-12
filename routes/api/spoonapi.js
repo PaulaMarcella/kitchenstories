@@ -40,7 +40,7 @@ router.get("/search/:query", async (req, res) => {
     else if (req.query.vegetarian === "true") parameters += "&diet=vegetarian";
     //check intolerances
     if (req.query.glutenfree === "true" && req.query.dairyfree === "true")
-      parameters += "&intolerance=gluten-free,dairy-free";
+      parameters += "&intolerance=gluten,dairy";
     else if (req.query.glutenfree === "true")
       parameters += "&intolerance=gluten";
     else if (req.query.dairyfree === "true") parameters += "&intolerance=dairy";

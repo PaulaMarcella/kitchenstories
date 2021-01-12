@@ -35,3 +35,21 @@ export const searchRecipes = (query, params) => async (dispatch) => {
     });
   }
 };
+
+// Get One by id  Recipes from spoon API
+export const getRecipeById = (id) => async (dispatch) => {
+  // try {
+  //   const res = await axios.get(`/api/spoonapi/search/${query}`, { params });
+  //   console.log(res.data);
+  //   dispatch({
+  //     type: SEARCH_RECIPES,
+  //     payload: res.data.results
+  //   });
+  // } catch (err) {
+  //   console.error(err);
+  //   dispatch({
+  //     type: RECIPE_ERROR,
+  //     payload: { msg: err.response.statusText, status: err.response.status }
+  //   });
+  // }
+};

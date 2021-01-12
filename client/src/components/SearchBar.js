@@ -36,4 +36,5 @@ function SearchBar({ searchRecipes, filterState }) {
     </div>
   );
 }
+
 export default connect(null, { searchRecipes })(SearchBar);
