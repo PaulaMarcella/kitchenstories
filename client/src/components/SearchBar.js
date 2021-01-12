@@ -37,4 +37,13 @@ function SearchBar({ searchRecipes, filterState }) {
   );
 }
 
+SearchBar.defaultProps = {
+  filterState: {
+    vegetarian: false,
+    vegan: false,
+    glutenfree: false,
+    dairyfree: false
+  }
+};
+
 export default connect(null, { searchRecipes })(SearchBar);

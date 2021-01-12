@@ -12,6 +12,9 @@
   border-bottom: solid 1px $gray-color;
   opacity: 0.9;
   background-color: $white-color;
+  .active {
+    border-bottom: 3px solid $yellow-color;
+  }
   ul {
     display: flex;
     align-items: center;

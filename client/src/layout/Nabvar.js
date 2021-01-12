@@ -1,5 +1,5 @@
 import "../styles/Navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -10,13 +10,19 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to="/#recipes">Recipes</Link>
+        <NavLink activeClassName="active" to="/#recipes">
+          Recipes
+        </NavLink>
       </li>
       <li>
-        <Link to="/search">Search</Link>
+        <NavLink activeClassName="active" to="/search">
+          Search
+        </NavLink>
       </li>
       <li>
-        <Link to="/profile">Profile</Link>
+        <NavLink activeClassName="active" to="/profile">
+          Profile
+        </NavLink>
       </li>
       <li>
         <a className="btn" onClick={logout} href="!#">
@@ -29,13 +35,19 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/search">Search</Link>
+        <NavLink activeClassName="active" to="/search">
+          Search
+        </NavLink>
       </li>
       <li>
-        <Link to="/register">Sign Up</Link>
+        <NavLink activeClassName="active" to="/register">
+          Sign Up
+        </NavLink>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <NavLink activeClassName="active" to="/login">
+          Login
+        </NavLink>
       </li>
     </ul>
   );

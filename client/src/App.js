@@ -13,6 +13,7 @@ import Home from "./views/Home";
 import Register from "./views/Register";
 import Login from "./views/Login";
 import Search from "./views/Search";
+import Recipe from "./views/Recipe";
 
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utilities/setAuthToken";
@@ -35,6 +36,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/search" component={Search} />
+            <Route exact path="/recipe/:recipeId" component={Recipe} />
           </Switch>
         </Fragment>
       </BrowserRouter>

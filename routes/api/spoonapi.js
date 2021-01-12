@@ -40,10 +40,11 @@ router.get("/search/:query", async (req, res) => {
     else if (req.query.vegetarian === "true") parameters += "&diet=vegetarian";
     //check intolerances
     if (req.query.glutenfree === "true" && req.query.dairyfree === "true")
-      parameters += "&intolerance=gluten,dairy";
+      parameters += "&intolerances=gluten,dairy";
     else if (req.query.glutenfree === "true")
-      parameters += "&intolerance=gluten";
-    else if (req.query.dairyfree === "true") parameters += "&intolerance=dairy";
+      parameters += "&intolerances=gluten";
+    else if (req.query.dairyfree === "true")
+      parameters += "&intolerances=dairy";
     const query = req.params.query === " " ? "" : req.params.query;
     console.log("QUERY: ", query);
     const limit = req.query.limit ? req.query.limit : 5;

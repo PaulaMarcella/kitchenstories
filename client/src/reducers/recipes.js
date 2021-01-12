@@ -1,4 +1,9 @@
-import { GET_RECIPES, RECIPE_ERROR, SEARCH_RECIPES } from "../actions/types";
+import {
+  GET_RECIPES,
+  RECIPE_ERROR,
+  SEARCH_RECIPES,
+  GET_ONERECIPE
+} from "../actions/types";
 
 const initialState = {
   recipes: [],
@@ -17,7 +22,12 @@ export default function auth(state = initialState, action) {
         recipes: payload,
         loading: false
       };
-
+    case GET_ONERECIPE:
+      return {
+        ...state,
+        recipe: payload,
+        loading: false
+      };
     case RECIPE_ERROR:
       return {
         ...state,

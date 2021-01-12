@@ -12,6 +12,7 @@ export const AUTH_ERROR = "AUTH_ERROR";
 
 export const GET_RECIPES = "GET_RECIPES";
 export const SEARCH_RECIPES = "SEARCH_RECIPES";
+export const GET_ONERECIPE = "GET_ONERECIPE";
 export const RECIPE_ERROR = "RECIPE_ERROR";
 
 export const LOGOUT = "LOGOUT";
