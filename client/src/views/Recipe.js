@@ -1,81 +1,97 @@
-import React, { useEffect, Fragment } from "react";
 import "../styles/Recipe.scss";
+import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getRecipeById } from "../actions/recipes";
 
 import Spinner from "../layout/Spinner";
 
+import RecipeList from "../components/recipes/RecipeList";
+
 function Recipe({ getRecipeById, recipes: { loading, recipe } }) {
   const { recipeId } = useParams();
   useEffect(() => {
     getRecipeById(recipeId);
   }, [getRecipeById, recipeId]);
+
+  const getInstructions = () => {
+    if (recipe.instruction) {
+      return { __html: recipe.instructions };
+    } else {
+      return {
+        __html: "<p>Sorry, this recipe does not have instructions.</p>"
+      };
+    }
+  };
+
   return (
     <div className="recipe">
       <div
         className="recipe-header"
         style={{
-          backgroundImage: recipe
-            ? recipe.image
-            : "https://www.kitchenstories.com/images/IMG_searchhero_tablet@2x.023258f0ce734037b9e6dcb220318d30.jpg"
+          backgroundImage:
+            'url("https://www.kitchenstories.com/images/IMG_searchhero_tablet@2x.023258f0ce734037b9e6dcb220318d30.jpg")'
         }}
+        // style={{
+        //   backgroundImage: recipe
+        //     ? `url(${recipe.image})`
+        //     : 'url("https://www.kitchenstories.com/images/IMG_searchhero_tablet@2x.023258f0ce734037b9e6dcb220318d30.jpg")'
+        // }}
       >
-        <h1>Recipe Title</h1>
-        <p>summary</p>
+        <h1 className="title-text">{!loading && recipe ? recipe.title : ""}</h1>
       </div>
 
       <div className="container">
-        3
         {!loading ? (
-          <div>
+          <div className="recipe-main">
             {recipe ? (
               <Fragment>
-                {console.log(recipe)}
-                <h1>{recipe.title}</h1>
-                <p>
-                  <i className="fas fa-leaf"></i> Vegetarian
-                </p>
+                <div className="meta">
+                  {/* <h2>{recipe.title}</h2> */}
+                  <p>
+                    <i className="fas fa-heart"></i>{" "}
+                    <span>{recipe.aggregateLikes}</span> Likes
+                  </p>
+                  {recipe.vegetarian && (
+                    <p>
+                      <i className="fas fa-leaf"></i> Vegetarian{" "}
+                    </p>
+                  )}
+                  {recipe.vegan && (
+                    <p>
+                      <i className="fas fa-seedling"></i> Vegan{" "}
+                    </p>
+                  )}
+                  {recipe.glutenFree && (
+                    <p>
+                      <i className="fas fa-check"></i> Gluten Free{" "}
+                    </p>
+                  )}
+                  {recipe.dairyFree && (
+                    <p>
+                      <i className="fas fa-check"></i> Dairy Free{" "}
+                    </p>
+                  )}
+                </div>
+                <div className="intro">
+                  <div className="ingredients">
+                    <h3>Ingredients</h3>
+                    {recipe.extendedIngredients.map((ingredient) => (
+                      <ul key={ingredient.id}>
+                        {Math.floor(ingredient.measures.metric.amount)}{" "}
+                        {ingredient.measures.metric.unitShort} {ingredient.name}
+                      </ul>
+                    ))}
+                  </div>
 
-                <p>
-                  <i className="fas fa-heart"></i>{" "}
-                  <span>{recipe.aggregateLikes}</span> Likes
-                </p>
+                  <img src={recipe.image} alt={recipe.title} />
+                </div>
 
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laborum similique nemo, facilis debitis in est ipsum placeat
-                  perspiciatis tempore dolorem, architecto saepe fugiat
-                  laboriosam minus minima ex nulla nihil cumque, quas dolore
-                  quos voluptatibus enim dolorum temporibus! Commodi, odio
-                  earum.
-                </p>
-                <br />
-                <h4>Ingredients</h4>
-                <ul>Lorem, ipsum.</ul>
-                <ul>Lorem, ipsum.</ul>
-                <ul>Lorem, ipsum.</ul>
-                <ul>Lorem, ipsum.</ul>
-                <br />
-                <h4>Instructions</h4>
-                <ol>
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Laborum, pariatur.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Laborum, pariatur.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Laborum, pariatur.
-                  </li>
-                  <li>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Laborum, pariatur.
-                  </li>
-                </ol>
+                <div className="instructions">
+                  <h3>Instructions</h3>
+                  <div dangerouslySetInnerHTML={getInstructions()}></div>
+                </div>
+                <RecipeList />
               </Fragment>
             ) : (
               <Fragment>
