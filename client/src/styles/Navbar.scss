@@ -1,6 +1,10 @@
 @import "../styles/_variables.scss";
 
 .navbar {
+  a {
+    color: $text-color !important;
+    text-decoration: none;
+  }
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +28,11 @@
       margin: 0 0.25rem;
       &:hover {
         border-bottom: 3px solid $yellow-color;
+        text-decoration: none;
       }
     }
+  }
+  #logout {
+    margin: 0 0.25rem;
   }
 }

@@ -13,6 +13,7 @@ import Home from "./views/Home";
 import Register from "./views/Register";
 import Login from "./views/Login";
 import Search from "./views/Search";
+import Profile from "./views/Profile";
 import Recipe from "./views/Recipe";
 
 import { loadUser } from "./actions/auth";
@@ -36,6 +37,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/search" component={Search} />
+            <Route exact path="/profile" component={Profile} />
             <Route exact path="/recipe/:recipeId" component={Recipe} />
           </Switch>
         </Fragment>

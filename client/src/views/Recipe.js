@@ -76,12 +76,15 @@ function Recipe({ getRecipeById, recipes: { loading, recipe } }) {
                 <div className="intro">
                   <div className="ingredients">
                     <h3>Ingredients</h3>
-                    {recipe.extendedIngredients.map((ingredient) => (
-                      <ul key={ingredient.id}>
-                        {Math.floor(ingredient.measures.metric.amount)}{" "}
-                        {ingredient.measures.metric.unitShort} {ingredient.name}
-                      </ul>
-                    ))}
+                    <ul>
+                      {recipe.extendedIngredients.map((ingredient) => (
+                        <li key={ingredient.id}>
+                          {Math.floor(ingredient.measures.metric.amount)}{" "}
+                          {ingredient.measures.metric.unitShort}{" "}
+                          {ingredient.name}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
                   <img src={recipe.image} alt={recipe.title} />

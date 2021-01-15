@@ -1,0 +1,44 @@
+@import "./variables";
+
+.profile {
+  &-top {
+    .img {
+      position: relative;
+      width: 30%;
+      img {
+        border-radius: 8px;
+        width: 100%;
+        height: 100%;
+      }
+      .btn {
+        position: absolute;
+        margin: 0;
+        padding: 0.2rem;
+        border-radius: 0 0 8px 0;
+        z-index: 1;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    display: flex;
+    justify-content: space-between;
+  }
+  &-main {
+    .nav-item.nav-link {
+      background-color: transparent;
+      border: none;
+      font-size: 1.3rem;
+      &:hover {
+        color: lighten($text-color, 40%);
+      }
+      &.active {
+        background-color: transparent;
+        border: none;
+        border-bottom: 4px solid $yellow-color;
+      }
+    }
+    .tab-pane {
+      margin: 2rem;
+    }
+  }
+}
