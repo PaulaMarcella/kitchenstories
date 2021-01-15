@@ -33,7 +33,9 @@ export const getRecipes = () => async (dispatch) => {
 // Search  Recipes from spoon API
 export const searchRecipes = (query, params) => async (dispatch) => {
   try {
+    console.log(query, params);
     const res = await axios.get(`/api/spoonapi/search/${query}`, { params });
+    console.log(res.data);
     dispatch({
       type: SEARCH_RECIPES,
       payload: res.data.results

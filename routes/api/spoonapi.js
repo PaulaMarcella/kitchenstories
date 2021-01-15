@@ -49,7 +49,7 @@ router.get("/search/:query", async (req, res) => {
     else if (req.query.dairyfree === "true")
       parameters += "&intolerances=dairy";
     const query = req.params.query === " " ? "" : req.params.query;
-    const limit = req.query.limit ? req.query.limit : 5;
+    const limit = req.query.limit ? req.query.limit : 1;
     const uri = encodeURI(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${config.get(
         "spoonacularApiKey"

@@ -7,6 +7,7 @@ import Spinner from "../../layout/Spinner";
 import RecipeItem from "./RecipeItem";
 
 function RecipeList({ recipes: { recipes, loading }, title }) {
+  console.log(recipes);
   return (
     <div className="container recipes">
       <h2 className="py-1">{title}</h2>
@@ -25,7 +26,7 @@ function RecipeList({ recipes: { recipes, loading }, title }) {
   );
 }
 RecipeList.propTypes = {
-  recipes: PropTypes.object
+  recipes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
