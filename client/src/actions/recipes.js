@@ -6,6 +6,10 @@ import {
   GET_ONERECIPE
 } from "./types";
 
+//Post a recipe
+
+import { setAlert } from "../actions/alert";
+
 // Get all Recipes from spoon API
 export const getRecipes = () => async (dispatch) => {
   try {
@@ -20,6 +24,9 @@ export const getRecipes = () => async (dispatch) => {
       type: RECIPE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
+    if (err.response.data) {
+      dispatch(setAlert(err.response.data.msg, "danger"));
+    }
   }
 };
 
@@ -27,7 +34,6 @@ export const getRecipes = () => async (dispatch) => {
 export const searchRecipes = (query, params) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/spoonapi/search/${query}`, { params });
-    console.log(res.data);
     dispatch({
       type: SEARCH_RECIPES,
       payload: res.data.results
@@ -38,6 +44,9 @@ export const searchRecipes = (query, params) => async (dispatch) => {
       type: RECIPE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
+    if (err.response.data) {
+      dispatch(setAlert(err.response.data.msg, "danger"));
+    }
   }
 };
 
@@ -58,5 +67,8 @@ export const getRecipeById = (recipeId) => async (dispatch) => {
       type: RECIPE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
+    if (err.response.data) {
+      dispatch(setAlert(err.response.data.msg, "danger"));
+    }
   }
 };

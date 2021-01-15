@@ -12,7 +12,7 @@ function RecipeItem({ recipe }) {
         <div
           className="img"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${backgroundUrl})`
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url(${backgroundUrl})`
           }}
         >
           <div className="body">

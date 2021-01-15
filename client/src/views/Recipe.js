@@ -15,12 +15,12 @@ function Recipe({ getRecipeById, recipes: { loading, recipe } }) {
   }, [getRecipeById, recipeId]);
 
   const getInstructions = () => {
-    if (recipe.instruction) {
-      return { __html: recipe.instructions };
-    } else {
+    if (recipe.instructions === "") {
       return {
         __html: "<p>Sorry, this recipe does not have instructions.</p>"
       };
+    } else {
+      return { __html: recipe.instructions };
     }
   };
 

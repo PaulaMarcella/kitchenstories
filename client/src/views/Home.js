@@ -1,13 +1,17 @@
 import "../styles/Home.scss";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
+import { getRecipes } from "../actions/recipes";
 import SearchBar from "../components/SearchBar";
 import RecipeList from "../components/recipes/RecipeList";
 
-function Home({ auth: { isAuthenticated, loading, user } }) {
+function Home({ getRecipes, auth: { isAuthenticated, loading, user } }) {
+  useEffect(() => {
+    getRecipes();
+    // eslint-disable-next-line
+  }, []);
   const guestHeader = (
     <Fragment>
       <p className="lead">Discover share and search new Recipes</p>
@@ -49,6 +53,7 @@ function Home({ auth: { isAuthenticated, loading, user } }) {
 }
 
 Home.propTypes = {
+  getRecipes: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -56,4 +61,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { getRecipes })(Home);

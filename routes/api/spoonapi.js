@@ -26,6 +26,9 @@ router.get("/all", async (req, res) => {
     return res.json(response.data);
   } catch (err) {
     console.error(err.message);
+    if (err.response.status === 402) {
+      return res.status(402).json({ msg: "Maximum daily api calls exhausted" });
+    }
     return res.status(404).json({ msg: "No Recipes found" });
   }
 });
@@ -46,14 +49,12 @@ router.get("/search/:query", async (req, res) => {
     else if (req.query.dairyfree === "true")
       parameters += "&intolerances=dairy";
     const query = req.params.query === " " ? "" : req.params.query;
-    console.log("QUERY: ", query);
     const limit = req.query.limit ? req.query.limit : 5;
     const uri = encodeURI(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${config.get(
         "spoonacularApiKey"
       )}&query=${query}&number=${limit}` + parameters
     );
-    console.log(uri);
     const headers = {
       "Content-Type": "application/json",
       "user-agent": "node.js",
@@ -63,6 +64,9 @@ router.get("/search/:query", async (req, res) => {
     return res.json(response.data);
   } catch (err) {
     console.error(err.message);
+    if (err.response.status === 402) {
+      return res.status(402).json({ msg: "Maximum daily api calls exhausted" });
+    }
     res.status(500).send("Server Error");
   }
 });
@@ -85,6 +89,9 @@ router.get("/similar/:recipeId", async (req, res) => {
     return res.json(response.data);
   } catch (err) {
     console.error(err.message);
+    if (err.response.status === 402) {
+      return res.status(402).json({ msg: "Maximum daily api calls exhausted" });
+    }
     res.status(500).send("Server Error");
   }
 });
@@ -107,6 +114,9 @@ router.get("/:recipeId", async (req, res) => {
     return res.json(response.data);
   } catch (err) {
     console.error(err.message);
+    if (err.response.status === 402) {
+      return res.status(402).json({ msg: "Maximum daily api calls exhausted" });
+    }
     res.status(500).send("Server Error");
   }
 });
